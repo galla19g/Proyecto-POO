@@ -1,11 +1,11 @@
 package org.galla;
 
 import io.javalin.Javalin;
-import org.galla.controller.ExceptionController;
-import org.galla.controller.HealthController;
-import org.galla.controller.ProductoController;
-import org.galla.repository.ProductoRepository;
-import org.galla.service.ProductoService;
+import org.galla.productos.controller.ExceptionController;
+import org.galla.productos.controller.HealthController;
+import org.galla.productos.controller.ProductoController;
+import org.galla.productos.repository.ProductoRepository;
+import org.galla.productos.service.ProductoService;
 
 public class Main {
     public static void main(String[] args) {
