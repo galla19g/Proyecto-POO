@@ -1,92 +1,59 @@
 package org.galla.controller;
 
-import com.google.gson.Gson;
-import org.galla.model.Producto;
-import org.galla.repository.ProductoRepository;
+import io.javalin.Javalin;
 import io.javalin.http.Context;
-
-import java.util.HashMap;
-import java.util.Map;
+import org.galla.model.Producto;
+import org.galla.model.Mensaje;
+import org.galla.service.ProductoService;
 
 public class ProductoController {
-    private final ProductoRepository repository;
-    private final Gson gson;
+    private final ProductoService productoService;
 
-    public ProductoController(ProductoRepository repository) {
-        this.repository = repository;
-        this.gson = new Gson();
+    public ProductoController(ProductoService productoService) {
+        this.productoService = productoService;
     }
 
-
-    public void obtenerTodos(Context ctx) {
-       ctx.contentType("application/json");
-       ctx.json(repository.obtenerTodos());
+    public void configurarRutas(Javalin app) {
+        app.post("/productos", this::guardarProducto);
+        app.get("/productos", this::obtenerProductos);
+        app.delete("/productos/:id", this::eliminarProducto);
+        app.put("/productos/:id", this::actualizarProducto);
+        app.get("/productos/:id", this::listarProducto);
     }
 
-    public String obtenerPorId(Context ctx) {
-       ctx.contentType("application/json");
+    public void guardarProducto(Context ctx) {
+        ctx.contentType("application/json");
+        Producto Producto = (Producto) ctx.bodyAsClass(Producto.class);
+        this.productoService.agregarProducto(Producto);
+        Mensaje <Producto> mensaje = new Mensaje <Producto> ("Producto agregado correctamente", Producto);
+        ctx.json(mensaje);
+        ctx.status(201);
+    }
+
+    public void obtenerProductos(Context ctx) {
         String id = ctx.pathParam("id");
-        return repository.obtenerPorId(id)
-                .map(gson::toJson)
-                .orElseGet(() -> {
-                    ctx.status(404);
-                    return crearMensajeError("Producto no encontrado");
-                });
+        Producto producto = this.productoService.obtenerProducto(id);
+        ctx.json(producto);
     }
 
-    public String crearProducto(Context ctx) {
-        ctx.contentType("application/json");
-        try {
-            Producto nuevoProducto = gson.fromJson(ctx.body(), Producto.class);
-            Producto productoCreado = repository.agregarProducto(nuevoProducto);
-            ctx.status(201);
-            return gson.toJson(productoCreado);
-        } catch (Exception e) {
-            ctx.status(400);
-            return crearMensajeError("Error al crear el producto: " + e.getMessage());
-        }
-    }
-
-    public String actualizarProducto(Context ctx) {
-        ctx.contentType("application/json");
+    public void eliminarProducto(Context ctx) {
         String id = ctx.pathParam("id");
-        try {
-            Producto productoActualizado = gson.fromJson(ctx.body(), Producto.class);
-            boolean actualizado = repository.actualizarProducto(id, productoActualizado);
-            if (actualizado) {
-                return gson.toJson(repository.obtenerPorId(id).get());
-            } else {
-                ctx.status(404);
-                return crearMensajeError("Producto no encontrado");
-            }
-        } catch (Exception e) {
-            ctx.status(400);
-            return crearMensajeError("Error al actualizar el producto: " + e.getMessage());
-        }
+        this.productoService.eliminarProducto(id);
+        Mensaje <String> mensaje = new Mensaje("Producto eliminado correctamente", id);
+        ctx.json(mensaje);
+        ctx.status(200);
     }
 
-    public String eliminarProducto(Context ctx) {
-        ctx.contentType("application/json");
+    public void actualizarProducto(Context ctx) {
         String id = ctx.pathParam("id");
-        boolean eliminado = repository.eliminarProducto(id);
-        if (eliminado) {
-            ctx.status(204);
-            return "";
-        } else {
-            ctx.status(404);
-            return crearMensajeError("Producto no encontrado");
-        }
+        Producto productoActualizado = (Producto) ctx.bodyAsClass(Producto.class);
+        this.productoService.actualizarProducto(id, productoActualizado);
+        Mensaje <Producto> mensaje = new Mensaje("Producto actualizado correctamente", productoActualizado);
+        ctx.json(mensaje);
+        ctx.status(200);
     }
 
-    public String buscarPorCategoria(Context ctx) {
-        ctx.contentType("application/json");
-        String categoria = ctx.pathParam("categoria");
-        return gson.toJson(repository.buscarPorCategoria(categoria));
-    }
-
-    private String crearMensajeError(String mensaje) {
-        Map<String, String> error = new HashMap<>();
-        error.put("error", mensaje);
-        return gson.toJson(error);
+    public void listarProducto(Context ctx) {
+        ctx.json(this.productoService.obtenerProductos());
     }
 }
