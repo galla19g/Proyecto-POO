@@ -1,28 +1,31 @@
-package org.galla.model;
+package org.galla.productos;
 
 public class Producto {
-    private String id;
+    private int id;
     private String nombre;
-    private String descripcion;
     private double precio;
+    private int cantidad;
     private String categoria;
+    private String descripcion;
+    
 
-    public Producto() {}
 
-    public Producto(String id, String nombre, String descripcion, double precio, String categoria) {
-        this.id = id;
+    public Producto(String nombre, double precio, int cantidad, String categoria, String descripcion) {
         this.nombre = nombre;
-        this.descripcion = descripcion;
         this.precio = precio;
+        this.cantidad = cantidad;
         this.categoria = categoria;
+        this.descripcion = descripcion;
     }
 
-    // Getters y Setters
-    public String getId() {
+    public Producto() {
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -34,14 +37,6 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
     public double getPrecio() {
         return precio;
     }
@@ -50,11 +45,27 @@ public class Producto {
         this.precio = precio;
     }
 
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
     public String getCategoria() {
         return categoria;
     }
 
     public void setCategoria(String categoria) {
         this.categoria = categoria;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 }
