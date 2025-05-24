@@ -10,6 +10,9 @@ import org.galla.productos.ProductoService;
 import org.galla.recetas.RecetaController;
 import org.galla.recetas.RecetaRepository;
 import org.galla.recetas.RecetaService;
+import org.galla.mercado.MercadoLocalController;
+import org.galla.mercado.MercadoLocalRepository;
+import org.galla.mercado.MercadoLocalService;
 
 public class Main {
     public static void main(String[] args) {
@@ -21,11 +24,15 @@ public class Main {
         RecetaRepository recetaRepository = new RecetaRepository();
         RecetaService recetaService = new RecetaService(recetaRepository);
         RecetaController recetaController = new RecetaController(recetaService);
+        MercadoLocalRepository mercadoLocalRepository = new MercadoLocalRepository();
+        MercadoLocalService mercadoLocalService = new MercadoLocalService(mercadoLocalRepository);
+        MercadoLocalController mercadoLocalController = new MercadoLocalController(mercadoLocalService);
         Javalin app = Javalin.create();
         exceptionController.iniciarControl(app);
         healthController.configurarRutas(app);
         productoController.configurarRutas(app);
         recetaController.configurarRutas(app);
+        mercadoLocalController.configurarRutas(app);
         app.before((ctx) ->ctx.header("content-type", "application/json"));
         app.start(8080);
     
