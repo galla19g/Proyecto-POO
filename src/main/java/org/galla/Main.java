@@ -13,6 +13,9 @@ import org.galla.recetas.RecetaService;
 import org.galla.usuarios.UsuarioController;
 import org.galla.usuarios.UsuarioRepository;
 import org.galla.usuarios.UsuarioService;
+import org.galla.restaurantes.RestauranteController;
+import org.galla.restaurantes.RestauranteRepository;
+import org.galla.restaurantes.RestauranteService;
 import org.galla.mercado.MercadoLocalController;
 import org.galla.mercado.MercadoLocalRepository;
 import org.galla.mercado.MercadoLocalService;
@@ -31,6 +34,9 @@ public class Main {
         UsuarioRepository usuarioRepository = new UsuarioRepository();
         UsuarioService usuarioService = new UsuarioService(usuarioRepository);
         UsuarioController usuarioController = new UsuarioController(usuarioService);
+        RestauranteRepository restauranteRepository = new RestauranteRepository();
+        RestauranteService restauranteService = new RestauranteService(restauranteRepository);
+        RestauranteController restauranteController = new RestauranteController(restauranteService);
         MercadoLocalRepository mercadoLocalRepository = new MercadoLocalRepository();
         MercadoLocalService mercadoLocalService = new MercadoLocalService(mercadoLocalRepository);
         MercadoLocalController mercadoLocalController = new MercadoLocalController(mercadoLocalService);
@@ -40,6 +46,7 @@ public class Main {
         productoController.configurarRutas(app);
         recetaController.configurarRutas(app);
         usuarioController.configurarRutas(app);
+        restauranteController.configurarRutas(app);
         mercadoLocalController.configurarRutas(app);
         app.before((ctx) ->ctx.header("content-type", "application/json"));
         app.start(8080);

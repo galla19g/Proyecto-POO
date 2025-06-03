@@ -16,7 +16,7 @@ public class UsuarioController {
 
     public void configurarRutas(Javalin app) {
         app.post("/usuarios", this::guardarUsuario);
-        app.get("/usuarios", this::obtenerTodasLosUsuarios); 
+        app.get("/usuarios", this::obtenerTodosLosUsuarios); 
         app.get("/usuarios/{id}", this::obtenerUsuarioPorId);
         app.delete("/usuarios/{id}", this::eliminarUsuario);
         app.put("/usuarios/{id}", this::actualizarUsuario);
@@ -30,7 +30,7 @@ public class UsuarioController {
         ctx.status(201);
     }
 
-    public void obtenerTodasLosUsuarios(Context ctx){
+    public void obtenerTodosLosUsuarios(Context ctx){
     ctx.contentType("application/json");
     List<Usuario> usuarios = this.usuarioService.obtenerUsuarios();
     ctx.json(usuarios);
@@ -62,7 +62,7 @@ public class UsuarioController {
         try {
             Usuario usuarioActualizada = this.usuarioService.actualizarUsuario(id, usuarioDelBody);
             ctx.json(usuarioActualizada);
-            ctx.status(200); // OK
+            ctx.status(200);
         } catch (NumberFormatException e) {
             ctx.status(400).json(new Mensaje<>("El ID proporcionado en la URL no es un número válido.", null));
         }

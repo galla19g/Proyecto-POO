@@ -66,6 +66,7 @@ public class UsuarioService {
         }
         return usuarioActualizadaEnRepo;
     }
+
     public Usuario obtenerUsuario(String id){
         if (id == null){
             throw new NotFoundException("No existe esa usuario que buscaste");
