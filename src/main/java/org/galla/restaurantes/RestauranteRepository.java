@@ -3,8 +3,6 @@ package org.galla.restaurantes;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.galla.usuarios.Usuario;   
-
 public class RestauranteRepository {
     private final ArrayList<Restaurante> restaurantes = new ArrayList();
     private final AtomicInteger id = new AtomicInteger(1);

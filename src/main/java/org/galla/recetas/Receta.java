@@ -9,10 +9,7 @@ public class Receta {
     
 
     public Receta(String nombre, String ingredientes, String instrucciones, int tiempoDePreparacion) {
-        this.nombre =  nombre;
-        this.ingredientes = ingredientes;
-        this. instrucciones = instrucciones;
-        this. tiempoDePreparacion = tiempoDePreparacion;
+
     }
 
     public Receta() {

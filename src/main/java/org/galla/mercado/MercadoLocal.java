@@ -9,21 +9,15 @@ public class MercadoLocal {
     private String diasDeMercado; 
     private String horarios; 
     private String tipoDeProductosPrincipales; 
-    private List<String> fotosDelAmbiente; 
 
     public MercadoLocal() {
     }
 
-    public MercadoLocal(String nombre, String ubicacionExacta, String diasDeMercado, String horarios, String tipoDeProductosPrincipales, List<String> fotosDelAmbiente) {
-        this.nombre = nombre;
-        this.ubicacionExacta = ubicacionExacta;
-        this.diasDeMercado = diasDeMercado;
-        this.horarios = horarios;
-        this.tipoDeProductosPrincipales = tipoDeProductosPrincipales;
-        this.fotosDelAmbiente = fotosDelAmbiente;
+    public MercadoLocal(String nombre, String ubicacionExacta, String diasDeMercado, String horarios, String tipoDeProductosPrincipales) {
+
     }
 
-    // Getters and Setters
+
     public int getIdMercado() {
         return idMercado;
     }
@@ -64,19 +58,12 @@ public class MercadoLocal {
         this.horarios = horarios;
     }
 
-    public String getTipoDeProductosPrincipales() {
+    public String gettipoDeProductosPrincipales() {
         return tipoDeProductosPrincipales;
     }
 
-    public void setTipoDeProductosPrincipales(String tipoDeProductosPrincipales) {
+    public void settipoDeProductosPrincipales(String tipoDeProductosPrincipales) {
         this.tipoDeProductosPrincipales = tipoDeProductosPrincipales;
     }
 
-    public List<String> getFotosDelAmbiente() {
-        return fotosDelAmbiente;
-    }
-
-    public void setFotosDelAmbiente(List<String> fotosDelAmbiente) {
-        this.fotosDelAmbiente = fotosDelAmbiente;
-    }
 }

@@ -52,6 +52,6 @@ public class MercadoLocalController {
     private void eliminarMercadoLocal(Context ctx) {
         String id = ctx.pathParam("id");
         mercadoLocalService.eliminarMercado(id);
-        ctx.status(204); // No content
+        ctx.status(204); 
     }
 }

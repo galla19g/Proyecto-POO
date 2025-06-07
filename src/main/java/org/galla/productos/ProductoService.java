@@ -25,9 +25,6 @@ public class ProductoService {
         if (producto.getCantidad() <= 0) {
             throw new BadParameterException("La cantidad del producto no puede ser menor o igual a cero.");
         }
-        if (producto.getCategoria() == null || producto.getCategoria().trim().isEmpty()) {
-            throw new BadParameterException("La categoría del producto no puede estar vacía.");
-        }
     }
 
     public void agregarProducto(Producto producto) {

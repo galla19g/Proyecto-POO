@@ -28,6 +28,7 @@ public class MercadoLocalService {
         if (mercado.getHorarios() == null || mercado.getHorarios().trim().isEmpty()) {
             throw new BadParameterException("Los horarios del mercado no pueden ser nulos o vacíos.");
         }
+
     
     }
 
@@ -51,7 +52,7 @@ public class MercadoLocalService {
         datosMercadoActualizar.setIdMercado(id); 
         MercadoLocal mercadoExistente = this.mercadoLocalRepository.obtenerMercadoPorId(id);
         if (mercadoExistente == null) {
-             throw new NotFoundException("No se encontró un mercado local con el ID " + id + " para actualizar.");
+            throw new NotFoundException("No se encontró un mercado local con el ID " + id + " para actualizar.");
         }
 
         MercadoLocal mercadoActualizado = this.mercadoLocalRepository.actualizarMercado(id, datosMercadoActualizar);
