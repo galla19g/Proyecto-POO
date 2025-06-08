@@ -19,8 +19,11 @@ public class BebidaTipicaService {
         if (bebida.getNombre() == null || bebida.getNombre().trim().isEmpty()) {
             throw new BadParameterException("El nombre de la bebida no puede ser nulo o vacío.");
         }
-        if (bebida.getMetodoDeFermentacionOPreparacion() == null || bebida.getMetodoDeFermentacionOPreparacion().trim().isEmpty()) {
+        if (bebida.getDescripcion() == null || bebida.getDescripcion().trim().isEmpty()) {
             throw new BadParameterException("El método de fermentación/preparación no puede ser nulo o vacío.");
+        }
+        if (bebida.getHistoria() == null || bebida.getHistoria().trim().isEmpty()) {
+            throw new BadParameterException("La historia de la bebida no puede ser nula o vacía.");
         }
     }
 
@@ -41,7 +44,7 @@ public class BebidaTipicaService {
             throws BadParameterException, NotFoundException {
         int id = parseId(idString, "actualizar");
         validarBebida(datosBebidaActualizar);
-        datosBebidaActualizar.setIdBebida(id);
+        datosBebidaActualizar.setId(id);
         BebidaTipica bebidaActualizada = bebidaRepository.actualizarBebida(id, datosBebidaActualizar);
         if (bebidaActualizada == null) {
             throw new NotFoundException("No se encontró una bebida con el ID " + id + " para actualizar.");

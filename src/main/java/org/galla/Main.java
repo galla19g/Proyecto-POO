@@ -2,8 +2,6 @@ package org.galla;
 
 import io.javalin.Javalin;
 
-import org.galla.compartidos.ExceptionController;
-import org.galla.compartidos.HealthController;
 import org.galla.productos.ProductoController;
 import org.galla.productos.ProductoRepository;
 import org.galla.productos.ProductoService;
@@ -22,9 +20,6 @@ import org.galla.eventosgastronomicos.EventogastronomicoService;
 import org.galla.ingredienteslocales.IngredienteLocalController;
 import org.galla.ingredienteslocales.IngredienteLocalRepository;
 import org.galla.ingredienteslocales.IngredienteLocalService;
-import org.galla.ComunidadIndigenaGastronomica.ComunidadIndigenaGastronomiaRepository;
-import org.galla.ComunidadIndigenaGastronomica.ComunidadIndigenaGastronomicaController;
-import org.galla.ComunidadIndigenaGastronomica.ComunidadIndigenaGastronomicaService;
 import org.galla.bebidas.BebidaTipicaController;
 import org.galla.bebidas.BebidaTipicaRepository;
 import org.galla.bebidas.BebidaTipicaService;
@@ -98,10 +93,7 @@ public class Main {
         BebidaTipicaService bebidaTipicaService = new BebidaTipicaService(bebidaTipicaRepository);
         BebidaTipicaController bebidaTipicaController = new BebidaTipicaController(bebidaTipicaService);
 
-        ComunidadIndigenaGastronomiaRepository comunidadIndigenaGastronomicaRepository = new ComunidadIndigenaGastronomicaRepository();
-        ComunidadIndigenaGastronomicaService comunidadIndigenaGastronomicaService= new ComunidadIndigenaGastronomicaService();
-        ComunidadIndigenaGastronomicaController comunidadIndigenaGastronomicaController= new ComunidadIndigenaGastronomicaController();
-
+        
         Javalin app = Javalin.create();
 
 

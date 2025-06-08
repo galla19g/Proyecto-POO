@@ -9,14 +9,14 @@ public class BebidaTipicaRepository {
     private final AtomicInteger idCounter = new AtomicInteger(1);
 
     public BebidaTipica agregarBebida(BebidaTipica bebida) {
-        bebida.setIdBebida(idCounter.getAndIncrement());
+        bebida.setId(idCounter.getAndIncrement());
         bebidas.add(bebida);
         return bebida;
     }
 
     public BebidaTipica eliminarBebida(int id) {
         for (int i = 0; i < bebidas.size(); i++) {
-            if (bebidas.get(i).getIdBebida() == id) {
+            if (bebidas.get(i).getId() == id) {
                 return bebidas.remove(i);
             }
         }
@@ -25,8 +25,8 @@ public class BebidaTipicaRepository {
 
     public BebidaTipica actualizarBebida(int id, BebidaTipica bebidaActualizada) {
         for (int i = 0; i < bebidas.size(); i++) {
-            if (bebidas.get(i).getIdBebida() == id) {
-                bebidaActualizada.setIdBebida(id);
+            if (bebidas.get(i).getId() == id) {
+                bebidaActualizada.setId(id);
                 bebidas.set(i, bebidaActualizada);
                 return bebidaActualizada;
             }
@@ -36,7 +36,7 @@ public class BebidaTipicaRepository {
 
     public BebidaTipica obtenerBebidaPorId(int id) {
         for (BebidaTipica bebida : bebidas) {
-            if (bebida.getIdBebida() == id) {
+            if (bebida.getId() == id) {
                 return bebida;
             }
         }
