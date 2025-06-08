@@ -1,10 +1,10 @@
-package org.galla.ComunidadIndígenaGastronomia;
-
-import org.galla.ComunidadIndígenaGastronomia.ComunidadIndigenaGastronomia;
+package org.galla.ComunidadIndigenaGastronomica;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+
+
 
 public class ComunidadIndigenaGastronomiaRepository {
     private final List<ComunidadIndigenaGastronomia> comunidades = new ArrayList<>();

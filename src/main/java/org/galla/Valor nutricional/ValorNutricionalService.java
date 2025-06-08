@@ -1,4 +1,4 @@
-package org.galla.nutricion;
+package org.galla.Valornutricional;
 
 import org.galla.compartidos.BadParameterException;
 import org.galla.compartidos.NotFoundException;

@@ -22,6 +22,12 @@ import org.galla.eventosgastronomicos.EventogastronomicoService;
 import org.galla.ingredienteslocales.IngredienteLocalController;
 import org.galla.ingredienteslocales.IngredienteLocalRepository;
 import org.galla.ingredienteslocales.IngredienteLocalService;
+import org.galla.ComunidadIndigenaGastronomica.ComunidadIndigenaGastronomiaRepository;
+import org.galla.ComunidadIndigenaGastronomica.ComunidadIndigenaGastronomicaController;
+import org.galla.ComunidadIndigenaGastronomica.ComunidadIndigenaGastronomicaService;
+import org.galla.bebidas.BebidaTipicaController;
+import org.galla.bebidas.BebidaTipicaRepository;
+import org.galla.bebidas.BebidaTipicaService;
 import org.galla.categorias.CategoriaController;
 import org.galla.categorias.CategoriaRepository;
 import org.galla.categorias.CategoriaService;
@@ -37,9 +43,8 @@ import org.galla.rutasgastronomicas.RutaGastronomicaService;
 import org.galla.mercado.MercadoLocalController;
 import org.galla.mercado.MercadoLocalRepository;
 import org.galla.mercado.MercadoLocalService;
-import org.galla.bebidas.BebidaController;
-import org.galla.bebidas.BebidaRepository;  
-import org.galla.bebidas.BebidaService;
+
+
 
 
 
@@ -48,9 +53,6 @@ public class Main {
         ProductoRepository productoRepository = new ProductoRepository();
         ProductoService productoService = new ProductoService(productoRepository);
         ProductoController productoController = new ProductoController(productoService);
-
-        ExceptionController exceptionController = new ExceptionController();
-        HealthController healthController = new HealthController();
 
         RecetaRepository recetaRepository = new RecetaRepository();
         RecetaService recetaService = new RecetaService(recetaRepository);
@@ -92,10 +94,16 @@ public class Main {
         RutaGastronomicaService rutaGastronomicaService = new RutaGastronomicaService(rutaGastronomicaRepository);
         RutaGastronomicaController rutaGastronomicaController = new RutaGastronomicaController(rutaGastronomicaService);
 
+        BebidaTipicaRepository bebidaTipicaRepository = new BebidaTipicaRepository();
+        BebidaTipicaService bebidaTipicaService = new BebidaTipicaService(bebidaTipicaRepository);
+        BebidaTipicaController bebidaTipicaController = new BebidaTipicaController(bebidaTipicaService);
+
+        ComunidadIndigenaGastronomiaRepository comunidadIndigenaGastronomicaRepository = new ComunidadIndigenaGastronomicaRepository();
+        ComunidadIndigenaGastronomicaService comunidadIndigenaGastronomicaService= new ComunidadIndigenaGastronomicaService();
+        ComunidadIndigenaGastronomicaController comunidadIndigenaGastronomicaController= new ComunidadIndigenaGastronomicaController();
+
         Javalin app = Javalin.create();
-        exceptionController.iniciarControl(app);
-        
-        healthController.configurarRutas(app);
+
 
         productoController.configurarRutas(app);
 

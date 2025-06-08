@@ -51,7 +51,7 @@ public class UsuarioController {
 
     public void eliminarUsuario(Context ctx){
         String id = ctx.pathParam("id");
-        this.usuarioService.eliminarUsuarios(id);
+        this.usuarioService.eliminarUsuario(id);
         ctx.status(204);
     }
 

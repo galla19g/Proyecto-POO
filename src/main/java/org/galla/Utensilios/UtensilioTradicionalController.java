@@ -1,4 +1,4 @@
-package org.galla.utensilios;
+package org.galla.Utensilios;
 
 import io.javalin.Javalin;
 import io.javalin.http.Context;

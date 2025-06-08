@@ -1,4 +1,4 @@
-package org.galla.utensilios;
+package org.galla.Utensilios;
 
 import org.galla.compartidos.BadParameterException;
 import org.galla.compartidos.NotFoundException;
