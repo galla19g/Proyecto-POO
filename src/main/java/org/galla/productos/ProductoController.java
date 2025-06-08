@@ -16,8 +16,8 @@ public class ProductoController {
 
     public void configurarRutas(Javalin app) {
         app.post("/productos", this::guardarProducto);
-        app.get("/productos", this::obtenerTodosLosProductos);
-        app.get("/productos/{id}", this::obtenerProductoPorId);  
+        app.get("/productos", this::obtenerTodosLosProductos); // Cambiado a un método más descriptivo
+        app.get("/productos/{id}", this::obtenerProductoPorId); // Cambiado a un método más descriptivo
         app.delete("/productos/{id}", this::eliminarProducto);
         app.put("/productos/{id}", this::actualizarProducto);
     }
@@ -56,10 +56,11 @@ public class ProductoController {
         ctx.status(204);
     }
 
+    // En ProductoController.java
     public void actualizarProducto(Context ctx) {
         ctx.contentType("application/json");
-        String id = ctx.pathParam("id"); 
-        Producto productoDelBody = ctx.bodyAsClass(Producto.class);
+        String id = ctx.pathParam("id"); // Obtiene el ID de la URL
+        Producto productoDelBody = ctx.bodyAsClass(Producto.class); // Obtiene los datos del cuerpo de la solicitud
         try {
             Producto productoActualizado = this.productoService.actualizarProducto(id, productoDelBody);
             ctx.json(productoActualizado);

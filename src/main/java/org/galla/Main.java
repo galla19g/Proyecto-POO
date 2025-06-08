@@ -37,6 +37,10 @@ import org.galla.rutasgastronomicas.RutaGastronomicaService;
 import org.galla.mercado.MercadoLocalController;
 import org.galla.mercado.MercadoLocalRepository;
 import org.galla.mercado.MercadoLocalService;
+import org.galla.bebidas.BebidaController;
+import org.galla.bebidas.BebidaRepository;  
+import org.galla.bebidas.BebidaService;
+
 
 
 public class Main {
